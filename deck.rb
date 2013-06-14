@@ -32,8 +32,3 @@ class Deck
   end
 
 end
-
-deck = Deck.new("flashcards_samples.txt")
-deck.load
-deck.pick_random_card
-p deck.is_answer_correct?("Hussain")

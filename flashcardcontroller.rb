@@ -1,7 +1,9 @@
-#include module!
+require_relative 'flashcard_view.rb'
+require_relative 'deck.rb'
 
 class FlashCardController
-  
+  include 'Game_View'
+
   def initialize(deck)
     @deck = deck
     @curr_card = deck.pick_random_card
