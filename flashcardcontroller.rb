@@ -20,7 +20,7 @@ class FlashCardController
       guess_string = ''
       until @deck.is_answer_correct?(guess_string)  
         guess_string = self.ask_for_guess
-        break if guess_string == 'exit'
+        break if guess_string == 'exit' || guess_string == 'skip'
         self.correct_output(@deck.is_answer_correct?(guess_string))
       end
       break if guess_string == 'exit'

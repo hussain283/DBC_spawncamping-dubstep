@@ -4,15 +4,14 @@ class Deck
 
   attr_reader :flash_cards,:current_card
 
-  def initialize(file_name)
-    @filename = file_name
+  def initialize(filename)
     @cards = []
-    self.load
+    self.load(filename)
     @current_card = nil
   end
 
-  def load
-    file = File.open(@filename,"r")
+  def load(filename)
+    file = File.open(filename,"r")
     
     data = file.read # usable data
     file.close
