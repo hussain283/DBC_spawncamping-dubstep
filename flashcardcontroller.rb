@@ -2,54 +2,32 @@ require_relative 'flashcard_view.rb'
 require_relative 'deck.rb'
 
 class FlashCardController
-  include 'Game_View'
+  include Game_View
 
-  def initialize(deck)
-    @deck = deck
-    @curr_card = deck.pick_random_card
+  def initialize(file_name)
+    @deck = Deck.new(file_name)
   end
 
   def run
-    welcome
-    game_loop
-  end
-
-
-  def welcome
-    "Welcome to Ruby Flash Cards. Type 'exit' to exit."
-  end
-
-  def get_input
-    print "Guess: "
-    input = gets.chomp
-    if input == "exit"
-      puts "Thanks for playing!"
-      break
-    end
-    return input
-  end
-
-  def get_random_card
-    @curr_card = @deck.pick_random_card
-  end
-
-  def display_definition
-    puts "Definition"
-    puts "#{@curr_card.definition}"
-  end
-
-  def check_input
-    @curr_card.is_definition_correct?
+    self.welcome_message
+    self.game_loop
   end
 
   def game_loop
     while true
-      display_definition
-      get_input
-      until check_input  
-        get_input
+      @deck.pick_random_card
+      self.print_definition(@deck.current_card.definition)
+      guess_string = ''
+      until @deck.is_answer_correct?(guess_string)  
+        guess_string = self.ask_for_guess
+        break if guess_string == 'exit'
+        self.correct_output(@deck.is_answer_correct?(guess_string))
       end
-      get_random_card
+      break if guess_string == 'exit'
     end
   end
 end
+
+
+new_game = FlashCardController.new('flashcard_samples.txt')
+new_game.run

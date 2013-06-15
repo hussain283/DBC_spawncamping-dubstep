@@ -18,8 +18,8 @@ class Deck
     file.close
 
     data = data.split("\n")
-    data.delete("")
-    
+    data.delete(" ")
+
     @cards = data.each_slice(2).map {|pair| FlashCard.new(definition: pair[0], answer: pair[1]) }
   end
 
