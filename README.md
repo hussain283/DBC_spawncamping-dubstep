@@ -1,4 +1,6 @@
 spawncamping-dubstep
 ====================
 
-flash cards practice
+Our first group project at DevBootcamp.
+
+Primary focus was on git and working on small teams.
